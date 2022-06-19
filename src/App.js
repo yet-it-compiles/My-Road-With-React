@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 const list = [
     {
         title: 'React',
@@ -20,55 +19,46 @@ const list = [
     },
 ];
 
-function App() {
-    return (
-        <div>
-            <h1>My Hacker Stories</h1>  {/* Header */}
+const App = () => (
+    <div>
+        <h1>My Hacker Stories</h1>
 
-            <Search/>
+        <Search />
 
-            <hr/>
+        <hr />
 
-            <List/>
-        </div>
-    );
-}
+        <List />
+    </div>
+);
 
-/**
- * Component function which holds the logic for the search bar
- * @returns {JSX.Element} search bar label and input box
- */
-function Search() {
+const Search = () => {
+
+    const handleChange = (event) => {
+        console.log(event);
+        console.log(event.target.value);
+    };
 
     return (
         <div>
             <label htmlFor="search">Search: </label>
-            <input id="search" type="text"/>
+            <input id="search" type="text" onChange={handleChange} />
         </div>
-    )
-}
-
-/**
- * Component function which contains the logic for the list
- * @returns {JSX.Element}
- */
-function List() {
-    return (
-        <ul>
-            {list.map(function (item) {
-                return (
-                    <li key={item.objectID}>
-                        <span>
-                            <a href={item.url}>{item.title}</a>
-                        </span>
-                        <span>{item.author}</span>
-                        <span>{item.num_comments}</span>
-                        <span>{item.points}</span>
-                    </li>
-                );
-            })}
-        </ul>
     );
 }
+
+const List = () => (
+    <ul>
+        {list.map((item) => (
+            <li key={item.objectID}>
+        <span>
+          <a href={item.url}>{item.title}</a>
+        </span>
+                <span>{item.author}</span>
+                <span>{item.num_comments}</span>
+                <span>{item.points}</span>
+            </li>
+        ))}
+    </ul>
+);
 
 export default App;
